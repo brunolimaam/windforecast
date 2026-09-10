@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Notebooks are exploration only - nothing that matters lives in one.
+# Kept out of git deliberately (CLAUDE.md). Reusable logic belongs in src/.
+notebooks/*.ipynb
+# ...except the analysis notebook, which is the working record of the assessment
+# and is versioned. Logic still lives in src/; the notebook orchestrates it.
+!notebooks/analysis.ipynb
+
+# Data: raw downloads and derived products are reproducible, not versioned.
+# Provenance lives in windforecast.config and in windforecast.download.
+# Ignore every FILE under data/, but keep the directories traversable so the
+# negations below can take effect. A pattern that matches a directory stops git
+# descending into it, and then nothing inside can be re-included.
+data/**
+!data/**/
+!data/**/.gitkeep
+!data/**/README.md
+
+# Outputs
+docs/figures/**
+!docs/figures/.gitkeep
+
+# Credentials - the CDS key lives in ~/.cdsapirc, never in the repo
+.cdsapirc
+.env
+
+# OS / editor
+.DS_Store
+
+# Claude Code: project instructions and local settings stay local
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+
+# Tests: kept locally for now, not part of the published project
+tests/

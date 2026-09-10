@@ -1,0 +1,58 @@
+# Site and method configuration.
+
+site:
+  # Hypothetical five-turbine site, placed at the airport south of the the DWD station Hohn (02303).
+
+  name: Hohn
+  latitude: 54.3162
+  longitude: 9.5385
+  turbine_count: 5
+  turbines:
+    - {name: T1, latitude: 54.311191, longitude: 9.515405}
+    - {name: T2, latitude: 54.312005, longitude: 9.524181}
+    - {name: T3, latitude: 54.313294, longitude: 9.533644}
+    - {name: T4, latitude: 54.314295, longitude: 9.543214}
+    - {name: T5, latitude: 54.315347, longitude: 9.551840}
+
+turbine:
+  model: Nordex N100/2500
+  hub_height_m: 100
+  # Power curve from Staffell I. (2012), "Wind Turbine Power Curves", Imperial
+  # College London. Published working paper, cited in the report.
+  power_curve: power_curve_nordex_n100.csv   # relative to config/
+  power_curve_reference_density: 1.225
+
+reference_data:
+  era5:
+    # NOT USED. Considered as a second long-term reference and deliberately
+    # dropped
+    dataset: reanalysis-era5-single-levels
+    variables: [100m_u_component_of_wind, 100m_v_component_of_wind]
+    period_start: 2002-01-01   # matched to COSMO-R6G2 so the two are comparable
+    period_end: 2025-12-31
+    # N/W/S/E around the site; 0.25 deg grid, nearest point is 54.25 N / 9.50 E
+    area: [54.5, 9.25, 54.25, 9.75]
+  cosmo:
+    # DWD regional reanalysis COSMO-R6G2, 6 km rotated-pole grid, CC BY 4.0.
+    product: COSMO-R6G2
+    base_url: https://opendata.dwd.de/climate_environment/REA/COSMO_R6G2
+    available_from: 2002-01
+    available_to: 2025-12
+    monthly_variables: [SP_100m, SP_150m, SP_200m]
+
+  dwd:
+    primary: 2303           # Hohn - the site station
+    time_base: MEZ
+
+analysis:
+  measurement_window:
+    start: 2021-01-01
+    end: 2022-12-31
+  roughness:
+    sectors:
+      - from_deg: 285
+        to_deg: 75
+        z0_m: 0.5 
+      - from_deg: 75
+        to_deg: 285
+        z0_m: 0.008
