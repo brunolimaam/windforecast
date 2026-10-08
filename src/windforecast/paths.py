@@ -20,6 +20,8 @@ RAW_ERA5 = RAW / "era5"
 RAW_COSMO = RAW / "cosmo"
 RAW_GWA = RAW / "gwa"
 
+PROCESSED = DATA / "processed"
+
 DOCS = ROOT / "docs"
 
 FIGURES = DOCS / "figures"

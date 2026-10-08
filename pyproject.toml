@@ -3,7 +3,7 @@ name = "windforecast"
 version = "0.1.0"
 description = "Wind resource and energy yield assessment for a hypothetical five-turbine site in Schleswig-Holstein, from public data only"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 license = { text = "MIT" }
 
 dependencies = [
@@ -21,6 +21,7 @@ dependencies = [
     "statsmodels>=0.15.0",
     "geopandas>=1.1.4",
     "contextily>=1.7.1",
+    "phonometry>=3.3.0",
 ]
 
 [dependency-groups]
@@ -29,6 +30,7 @@ dev = [
     "ruff>=0.6",
     "jupyterlab>=4.2",
     "ipykernel>=6.29",
+    "nbconvert[webpdf]>=7.17.1",
 ]
 
 [build-system]
